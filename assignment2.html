@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Website Bisma
+    </title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="assignment2.css">
+</head>
+
+<body>
+    <nav id="navbar">
+       <ul id="ul">
+            <li><a href="">HOME</a></li>
+            <li><a href="">PRODUCT</a></li>
+            <li><a href="">GALLERY</a></li>
+            <li><a href="">BLOG</a></li>
+            <li><a href="">INVENTORY</a></li>
+       </ul>
+    </nav>
+    <br>
+
+    
+    <section class="konten">
+        <div class="gambar">
+            <img src="anon.png" alt="Ini gambar orang" width="200" height="200">
+        </div>
+
+        <div class="deskripsi">
+            <h2 class ="output" id = "hasil1">Bisma Nanda Satria</h2>
+            <p class ="output" id = "hasil2">Front End Designer</p>
+            <button type="submit" class="btn btn-primary" id="button1" >Kontak</button>
+            <button type="submit" id="button2" class="btn btn-outline-success">Resume</button>
+        </div>
+
+        <div class="deskripsi2">
+            
+            <p>Availability</p>
+            <p>Usia</p>
+            <p>Lokasi</p>  
+            <p>Pengalaman</p>
+            <p>Email</p>
+            
+        </div>
+
+        <div class="deskripsi3">
+            <p class ="output" id = "hasil3">Full Time</p>
+            <p class ="output" id = "hasil4">21</p>
+            <p class ="output" id = "hasil5">Malang</p>
+            <p class ="output" id = "hasil6">0</p>
+            <a class ="output" id = "hasil7">bismanandasatria@gmail.com</a>
+        </div>
+
+    </section>
+
+    <section class="konten2">
+   
+    </section>
+
+    <form class="form">
+        <label for="Nama" id="label-nama">Nama</label>
+        <br>
+        <input name="Nama" id="input-nama" placeholder="Masukkan nama anda..." type="text" />
+        <br>
+        <label for="Role" id="label-role" >Role</label>
+        <br>
+        <input name="Role" id="input-role" placeholder="Masukkan role anda..." type="text"/>
+        <br>
+        <label for="Availability" id="label-availability">Availability</label>
+        <br>
+        <input name="Availability" id="input-availability" placeholder="Masukkan availability anda..." type="text"/>
+        <br>
+        <label for="Usia" id="label-usia">Usia</label>
+        <br>
+        <input name="Usia" id="input-usia" placeholder="Masukkan usia anda..." type="number" min="0"/>
+        <br>
+        <label for="Lokasi" id="label-lokasi">Lokasi</label>
+        <br>
+        <select name="Lokasi" id="select-lokasi">
+            <option disabled selected>Pilih lokasi anda</option>
+            <option>Jakarta</option>
+            <option>Bandung</option>
+            <option>Semarang</option>
+            <option>Yogyakarta</option>
+            <option>Malang</option>
+            <option>Surabaya</option>
+        </select>
+        <br/>
+        <label for="YearX" id="label-yearx">Year Experience</label>
+        <br>
+        <input name="YearX" id="input-yearx" placeholder="Lama pengalaman..." type="number" min="0"/>
+        <br/>
+        <label for="Email" id="label-email">Email</label>
+        <br>
+        <input name="Email" id="input-email" placeholder="Masukkan email anda..." type="email"/>
+        <br>
+        <button type= "button" onlick= "submitdata()" value="submit" id="button3">SUBMIT</button>
+    </form>   
+    <script type="text/javascript">
+        //input
+        const innama = document.getElementById("input-nama");
+        const inrole = document.getElementById("input-role");
+        const inavailability = document.getElementById("input-availability");
+        const inusia = document.getElementById("input-usia");
+        const inlokasi = document.getElementById("select-lokasi");
+        const intahun = document.getElementById("input-yearx");
+        const inemail = document.getElementById("input-email");
+
+
+        // output
+        const otnama = document.getElementById("hasil1");
+        const otrole = document.getElementById("hasil2");
+        const otavailability = document.getElementById("hasil3");
+        const otusia = document.getElementById("hasil4");
+        const otlokasi = document.getElementById("hasil5");
+        const ottahun = document.getElementById("hasil6");
+        const otemail = document.getElementById("hasil7");
+
+        const buttonsubmit = document.getElementById("button3");
+
+        function submitdata(){
+            document.documentElement.scrollTop = 0;
+            otnama.innerHTML = innama.value;
+            otrole.innerHTML = inrole.value;
+            otavailability.innerHTML = inavailability.value;
+            otusia.innerHTML = inusia.value;
+            otlokasi.innerHTML = inlokasi.value;
+            ottahun.innerHTML = intahun.value;
+            otemail.innerHTML = inemail.value;     
+        }
+
+        document.getElementById("button3").addEventListener("click", submitdata);
+    </script>
+</body>
+
