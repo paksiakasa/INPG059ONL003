@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 3</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-1">
+      <h2 class="title1">Kasus COVID-19 di</h2>
+      <h2 class="title2" id="hasilNegara"></h2>
+      <div class="input-group mb-3">
+        <input
+          id="inputSearch"
+          type="text"
+          class="form-control"
+          placeholder="Input Negara..."
+        />
+        <div class="input-group-append">
+          <button
+            id="tombolSearch"
+            class="btn btn-outline-success"
+            type="button"
+          >
+            Button
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="container-2">
+      <div class="row g-3">
+        <div class="col-4">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="/images/kasusaktif.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center">Kasus Aktif</p>
+              <p
+                id="kasusAktif"
+                class="card-text d-flex justify-content-center"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="/images/kasusbaru.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center">Kasus Baru</p>
+              <p
+                id="kasusBaru"
+                class="card-text d-flex justify-content-center"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="/images/sembuh.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center">
+                Total Sembuh
+              </p>
+              <p
+                id="totalSembuh"
+                class="card-text d-flex justify-content-center"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="/images/totalkasus.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center">Total Kasus</p>
+              <p
+                id="totalKasus"
+                class="card-text d-flex justify-content-center"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="/images/mati.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center">
+                Total Kematian
+              </p>
+              <p
+                id="totalKematian"
+                class="card-text d-flex justify-content-center"
+              ></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem">
+            <img
+              class="card-img-top"
+              src="/images/tes.png"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center">Total Tes</p>
+              <p
+                id="totalTes"
+                class="card-text d-flex justify-content-center"
+              ></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- fungsi -->
+
+    <script>
+      const options = {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "6ca1b2b373msh57292571e015a6cp1ed356jsne3954c0dce47",
+          "X-RapidAPI-Host": "covid-193.p.rapidapi.com",
+        },
+      };
+
+      fetch("https://covid-193.p.rapidapi.com/history?country=usa", options)
+        .then((response) => {
+          document.getElementById("hasilNegara").innerHTML =
+            response.response[0].country;
+          document.getElementById("kasusAktif").innerHTML =
+            response.response[0].cases.active;
+          document.getElementById("kasusBaru").innerHTML =
+            response.response[0].cases.new;
+          document.getElementById("totalSembuh").innerHTML =
+            response.response[0].cases.recovered;
+          document.getElementById("totalKasus").innerHTML =
+            response.response[0].cases.total;
+          document.getElementById("totalKematian").innerHTML =
+            response.response[0].deaths.total;
+          document.getElementById("totalTes").innerHTML =
+            response.response[0].tests.total;
+        })
+        .catch((err) => console.error(err));
+
+      var searchButton = document.getElementById("tombolSearch");
+
+      searchButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        let inputNegara = document.getElementById("inputSearch");
+        let namaNegara = inputNegara.value;
+        fetch(
+          `https://covid-193.p.rapidapi.com/history?country=${namaNegara}`,
+          options
+        )
+          .then((response) => {
+            return response.json();
+          })
+          .then((response) => {
+            document.getElementById("hasilNegara").innerHTML =
+              response.response[0].country;
+            document.getElementById("kasusAktif").innerHTML =
+              response.response[0].cases.active;
+            document.getElementById("kasusBaru").innerHTML =
+              response.response[0].cases.new;
+            document.getElementById("totalSembuh").innerHTML =
+              response.response[0].cases.recovered;
+            document.getElementById("totalKasus").innerHTML =
+              response.response[0].cases.total;
+            document.getElementById("totalKematian").innerHTML =
+              response.response[0].deaths.total;
+            document.getElementById("totalTes").innerHTML =
+              response.response[0].tests.total;
+          })
+          .catch((err) => console.error(err));
+      });
+    </script>
+  </body>
+</html>
